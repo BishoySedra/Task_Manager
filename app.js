@@ -1,9 +1,12 @@
 import Express from 'express'
 import taskRouter from './routes/task.js';
+import connectDB from './DB/connection.js';
 
 const app = Express();
 
 app.use(Express.json());
+
+connectDB();
 
 const baseRoute = `/api/v1`;
 app.use(`${baseRoute}/tasks`, taskRouter);
