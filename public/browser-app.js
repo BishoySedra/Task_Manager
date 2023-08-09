@@ -10,6 +10,10 @@ const showTasks = async () => {
     const {
       data: { tasks },
     } = await axios.get('/api/v1/tasks')
+
+    // for debugging
+    // console.log((await axios.get('/api/v1/tasks'))['data']['tasks']);
+
     if (tasks.length < 1) {
       tasksDOM.innerHTML = '<h5 class="empty-list">No tasks in your list</h5>'
       loadingDOM.style.visibility = 'hidden'
@@ -47,7 +51,6 @@ const showTasks = async () => {
 showTasks()
 
 // delete task /api/tasks/:id
-
 tasksDOM.addEventListener('click', async (e) => {
   const el = e.target
   if (el.parentElement.classList.contains('delete-btn')) {
@@ -64,7 +67,6 @@ tasksDOM.addEventListener('click', async (e) => {
 })
 
 // form
-
 formDOM.addEventListener('submit', async (e) => {
   e.preventDefault()
   const name = taskInputDOM.value
